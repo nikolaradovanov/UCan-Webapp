@@ -21,14 +21,14 @@ public class UCanApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User user1 = new User("Nikola", "Radovanovic", "M", "date", "ovdebeli", "HashCode");
-        userRepository.save(user1);
-
-        User user2 = new User("Marko", "Savic", "M", "date", "ovdebeli", "HashCode");
-        userRepository.save(user2);
-
-        User user3 = new User("Milica", "Markovic", "F", "date", "ovdebeli", "HashCode");
-        userRepository.save(user3);
+//        User user1 = new User("Nikola", "Radovanovic", "M", "date", "ovdebeli", "HashCode");
+//        userRepository.save(user1);
+//
+//        User user2 = new User("Marko", "Savic", "M", "date", "ovdebeli", "HashCode");
+//        userRepository.save(user2);
+//
+//        User user3 = new User("Milica", "Markovic", "F", "date", "ovdebeli", "HashCode");
+//        userRepository.save(user3);
     }
 
 }

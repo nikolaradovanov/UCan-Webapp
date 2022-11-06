@@ -19,15 +19,6 @@ public class User {
     String dateOfBirth;
     @Column(name = "username", nullable = false)
     String username;
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
     @Column(name = "password_hash", nullable = false)
     String passwordHash;
 
@@ -89,5 +80,13 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }
