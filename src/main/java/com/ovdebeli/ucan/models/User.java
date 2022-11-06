@@ -1,26 +1,47 @@
 package com.ovdebeli.ucan.models;
 
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 
+@Entity
+@Table(name = "user_table")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long userId;
+    @Column(name = "first_name",nullable = false)
     String firstName;
+    @Column(name = "last_name",nullable = false)
     String lastName;
+    @Column(name = "gender",nullable = false)
     String gender;
+    @Column(name = "dob",nullable = false)
     SimpleDateFormat dateOfBirth;
+    @Column(name = "last_name",nullable = false)
     String username;
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    @Column(name = "password_hash",nullable = false)
+    String passwordHash;
 
     public User() {
     }
 
-    public User(Long userId, String firstName, String lastName, String gender, SimpleDateFormat dateOfBirth, String username) {
-        this.userId = userId;
+    public User(String firstName, String lastName, String gender, SimpleDateFormat dateOfBirth, String username, String passwordHash) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.username = username;
+        this.passwordHash = passwordHash;
     }
 
     public Long getUserId() {
