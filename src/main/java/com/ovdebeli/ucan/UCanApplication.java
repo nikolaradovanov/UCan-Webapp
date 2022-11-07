@@ -29,6 +29,7 @@ public class UCanApplication implements CommandLineRunner {
 //
 //        User user3 = new User("Milica", "Markovic", "F", "date", "ovdebeli", "HashCode");
 //        userRepository.save(user3);
+
     }
 
 }
