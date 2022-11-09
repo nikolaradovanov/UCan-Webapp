@@ -14,7 +14,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center"> Update User </h1>
             <div class="card-body">
-                <form th:action="@{/users/{id}(${user.id})}" th:object="${user}" method="POST">
+                <form th:action="@{/users/edit/{id}(id = ${user.id})}" th:object="${user}" method="POST">
                     <div class="form-group">
                         <label>First Name </label>
                         <input type="text" name="firstName" th:field="*{firstName}" class="form-control"
@@ -35,6 +35,11 @@
                         <label> Username</label>
                         <input type="text" name="lastName" th:field="*{username}" class="form-control"
                                placeholder="Enter Username"/>
+                    </div>
+                    <div class="form-group">
+                        <label> Email</label>
+                        <input type="text" name="email" th:field="*{email}" class="form-control"
+                               placeholder="Enter Email"/>
                     </div>
                     <div class="form-group">
                         <label> Date of birth</label>

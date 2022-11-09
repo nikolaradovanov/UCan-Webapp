@@ -19,19 +19,23 @@ public class User {
     String dateOfBirth;
     @Column(name = "username", nullable = false)
     String username;
+
+    @Column(name = "email", nullable = false)
+    String email;
     @Column(name = "password_hash", nullable = false)
     String passwordHash;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String gender, String dateOfBirth, String username, String passwordHash) {
+    public User(String firstName, String lastName, String gender, String dateOfBirth, String username,String email, String passwordHash) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.username = username;
         this.passwordHash = passwordHash;
+        this.email = email;
     }
 
     public Long getId() {
@@ -88,5 +92,13 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

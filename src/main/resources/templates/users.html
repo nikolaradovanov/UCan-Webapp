@@ -36,7 +36,10 @@
                 <td th:text ="${user.gender}"></td>
                 <td th:text ="${user.dateOfBirth}"></td>
                 <td th:text ="${user.passwordHash}"></td>
-                <td><a class="btn btn-primary" th:href="@{/users/edit/{id}(id=${user.id})}">Edit</a></td>
+                <td>
+                    <a class="btn btn-primary" th:href="@{/users/edit/{id}(id=${user.id})}">Edit</a>
+                    <a class="btn btn-danger" th:href="@{/users/delete/{id}(id=${user.id})}">Delete</a>
+                </td>
             </tr>
             </tbody>
         </table>

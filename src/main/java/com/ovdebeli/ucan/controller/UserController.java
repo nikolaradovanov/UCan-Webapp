@@ -45,11 +45,11 @@ public class UserController {
         return "edit_user";
     }
 
-    @PostMapping("/users/{id}")
+    @PostMapping("/users/edit/{id}")
     public String updateUser(@PathVariable Long id, @ModelAttribute("user") User user) {
 
         User existingUser = userService.getUserById(id);
-        //existingUser.setId(id);
+        existingUser.setId(id);
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setGender(user.getGender());
@@ -59,6 +59,13 @@ public class UserController {
 
         userService.saveUser(existingUser);
 
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+
+        userService.deleteUserById(id);
         return "redirect:/users";
     }
 }
