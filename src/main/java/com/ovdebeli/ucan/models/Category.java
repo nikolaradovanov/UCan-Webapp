@@ -1,26 +1,38 @@
 package com.ovdebeli.ucan.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "category_table")
 public class Category {
 
-    Long categoryId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    @Column(name = "name", nullable = false)
     String name;
+    @Column(name = "description")
     String description;
 
     public Category() {
     }
 
-    public Category(Long categoryId, String name, String description) {
-        this.categoryId = categoryId;
+    public Category(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
