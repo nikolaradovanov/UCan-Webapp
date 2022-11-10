@@ -1,4 +1,4 @@
-package com.ovdebeli.ucan.controller;
+package com.ovdebeli.ucan.web.controller;
 
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.service.UserService;
