@@ -1,28 +1,36 @@
 package com.ovdebeli.ucan.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "author_table")
 public class Author {
 
-    Long authorId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+    @Column (name = "first_name", nullable = false)
     String firstName;
+    @Column (name = "last_name")
     String lastName;
-    String middleName;
+    @Column (name = "biography")
+    String biography;
 
     public Author() {
     }
 
-    public Author(Long authorId, String firstName, String lastName, String middleName) {
-        this.authorId = authorId;
+    public Author(String firstName, String lastName, String biography) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleName = middleName;
+        this.biography = biography;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Long getId() {
+        return id;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -41,11 +49,11 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getBiography() {
+        return biography;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setBiography(String middleName) {
+        this.biography = middleName;
     }
 }
