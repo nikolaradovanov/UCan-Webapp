@@ -1,34 +1,76 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>User Management System</title>
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
 </head>
 <body>
 
-<!-- Navbar -->
+<div th:insert="navbar :: navbar">  </div>
 
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand text-white" href="#">
-        <img src="/yes-you-can.png" width="50" height="50" class="d-inline-block align-top" alt="">
-        UCan
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#">Disabled</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!--Success message-->
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered to UCan APP!</div>
+            </div>
+
+            <h1>Registration</h1>
+
+            <form th:action="@{/registration}" th:object="${user}" method="POST">
+                <div class="form-group">
+                    <label class="control-label" form="firstName">First Name </label>
+                    <input type="text" name="firstName" th:field="*{firstName}" class="form-control"
+                           placeholder="Enter First Name" required autofocus="autofocus"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Name </label>
+                    <input ype="text" name="lastName" th:field="*{lastName}" class="form-control"
+                           placeholder="Enter Last Name" required autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label> Gender</label>
+                    <input type="text" name="lastName" th:field="*{gender}" class="form-control"
+                           placeholder="Enter Gender" required autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label> Username</label>
+                    <input type="text" name="lastName" th:field="*{username}" class="form-control"
+                           placeholder="Enter Username" required autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label> Email</label>
+                    <input type="text" name="email" th:field="*{email}" class="form-control"
+                           placeholder="Enter Email" required autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label> Date of birth</label>
+                    <input type="text" name="lastName" th:field="*{dateOfBirth}" class="form-control"
+                           placeholder="Enter Date of birth" required autofocus="autofocus"/>
+                </div>
+                <div class="form-group">
+                    <label>Password hash</label>
+                    <input type="text" name="lastName" th:field="*{passwordHash}" class="form-control"
+                           placeholder="Enter password hash" required autofocus="autofocus"/>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <span>Already registered?<a href="/"> sign in here</a></span>
+                </div>
+            </form>
+
         </div>
     </div>
-</nav>
+</div>
+
 
 </body>
 </html>
+
