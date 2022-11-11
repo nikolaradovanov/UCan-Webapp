@@ -1,10 +1,13 @@
 package com.ovdebeli.ucan.service.impl;
 
+import com.ovdebeli.ucan.models.Role;
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.repository.UserRepository;
 import com.ovdebeli.ucan.service.UserService;
+import com.ovdebeli.ucan.web.dto.UserRegistrationDto;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -33,12 +36,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateStudent(User user) {
+    public User updateUser(User user) {
         return userRepository.save(user);
     }
 
     @Override
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public User save(UserRegistrationDto userRegistrationDto) {
+        User user = new User(userRegistrationDto.getFirstName(),
+                userRegistrationDto.getLastName(),
+                userRegistrationDto.getGender(),
+                userRegistrationDto.getDateOfBirth(),
+                userRegistrationDto.getUsername(),
+                Arrays.asList(new Role("ROLE_USER")),
+                userRegistrationDto.getEmail(),
+                userRegistrationDto.getPasswordHash());
+
+        return saveUser(user);
     }
 }
