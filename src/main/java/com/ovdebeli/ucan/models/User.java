@@ -1,9 +1,11 @@
 package com.ovdebeli.ucan.models;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
-@Table(name = "user_table")
+@Table(name = "user_table", uniqueConstraints = {@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "username")})
 public class User {
 
     @Id
@@ -19,23 +21,33 @@ public class User {
     String dateOfBirth;
     @Column(name = "username", nullable = false)
     String username;
-
     @Column(name = "email", nullable = false)
     String email;
     @Column(name = "password_hash", nullable = false)
     String passwordHash;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable (
+            name = "user_roles",
+            joinColumns = {
+                    @JoinColumn(name = "user_id", referencedColumnName = "id"),
+                    @JoinColumn(name = "role_id", referencedColumnName = "id") }
+    )
+    Collection<Role> roles;
+
     public User() {
     }
 
-    public User(String firstName, String lastName, String gender, String dateOfBirth, String username,String email, String passwordHash) {
+    public User(String firstName, String lastName, String gender, String dateOfBirth, String username,
+            Collection<Role> roles, String email, String passwordHash) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.username = username;
-        this.passwordHash = passwordHash;
+        this.roles = roles;
         this.email = email;
+        this.passwordHash = passwordHash;
     }
 
     public Long getId() {
