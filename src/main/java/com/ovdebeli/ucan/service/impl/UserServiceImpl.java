@@ -5,6 +5,8 @@ import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.repository.UserRepository;
 import com.ovdebeli.ucan.service.UserService;
 import com.ovdebeli.ucan.web.dto.UserRegistrationDto;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -57,5 +59,10 @@ public class UserServiceImpl implements UserService {
                 userRegistrationDto.getPasswordHash());
 
         return saveUser(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return null;
     }
 }
