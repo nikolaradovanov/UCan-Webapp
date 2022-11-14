@@ -26,7 +26,7 @@ public class UserRegistrationController {
         return "registration";
     }
 
-    @PostMapping
+    @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user")UserRegistrationDto userRegistrationDto) {
 
         userService.save(userRegistrationDto);
