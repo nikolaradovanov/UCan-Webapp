@@ -1,6 +1,7 @@
 package com.ovdebeli.ucan.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "author_table")
@@ -15,6 +16,8 @@ public class Author {
     String lastName;
     @Column (name = "biography")
     String biography;
+    @OneToMany(mappedBy = "author")
+    Set<Quote> quotes;
 
     public Author() {
     }

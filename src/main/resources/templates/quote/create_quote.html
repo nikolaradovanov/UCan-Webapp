@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Ucan</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="navbar :: navbar">  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class="text-center"> Create New Quote</h1>
+      <div class="card-body">
+        <form th:action="@{/quotes}" th:object="${quote}" method="POST">
+          <div class="form-group">
+            <label>Quote</label>
+            <input type="text" name="text" th:field="*{text}" class="form-control"
+                   placeholder="Enter First Name"/>
+          </div>
+          <div class="form-group">
+            <label for="authorId">Author</label>
+            <select class="form-control" id="authorId" name="authorId" >
+              <option th:each="author: ${authors}" th:value="${author.id}" th:text ="${author.firstName}">
+                text
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="categoryId">Category</label>
+            <select class="form-control" id="categoryId" name="categoryId">
+              <option th:each="category: ${categories}" th:value="${category.id}" th:text ="${category.name}">
+              </option>
+            </select>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
