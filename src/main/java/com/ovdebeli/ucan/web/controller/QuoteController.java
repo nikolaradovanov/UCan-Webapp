@@ -53,23 +53,27 @@ public class QuoteController {
     public String editStudentForm(@PathVariable Long id, Model model) {
 
         model.addAttribute("quote",quoteService.getQuoteById(id));
-        return "/quotes/edit_quote";
+        model.addAttribute("authors",authorService.getAllAuthors());
+        model.addAttribute("categories",categoryService.getAllCategories());
+        return "/quote/edit_quote";
     }
 
-    @PostMapping("/quotes/edit/{id}")
-    public String updateQuote(@PathVariable Long id, @ModelAttribute("quote") Quote quote) {
+    @PostMapping("/quote/edit/{id}")
+    public String updateQuote(@PathVariable Long id, @ModelAttribute("quote") Quote quote,
+                              @RequestParam(name = "authorId") Long authorId,
+                              @RequestParam(name = "categoryId")Long categoryId) {
 
         Quote existingQuote = quoteService.getQuoteById(id);
         existingQuote.setId(id);
-        existingQuote.setAuthor(quote.getAuthor());
-        existingQuote.setCategory(quote.getCategory());
+        existingQuote.setAuthor(authorService.getAuthorById(authorId));
+        existingQuote.setCategory(categoryService.getCategoryById(categoryId));
         existingQuote.setText(quote.getText());
         quoteService.saveQuote(existingQuote);
 
         return "redirect:/quotes";
     }
 
-    @GetMapping("/quotes/delete/{id}")
+    @GetMapping("/quote/delete/{id}")
     public String deleteQuote(@PathVariable Long id) {
 
         quoteService.deleteQuoteById(id);
