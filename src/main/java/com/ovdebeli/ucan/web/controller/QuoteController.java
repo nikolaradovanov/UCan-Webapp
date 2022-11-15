@@ -8,10 +8,7 @@ import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class QuoteController {
@@ -29,37 +26,30 @@ public class QuoteController {
 
     @GetMapping("/quotes")
     public String listQuotes(Model model) {
-
-        //Sample test case
-        Author author = new Author("Laki","Masala","asd");
-        authorService.saveAuthor(author);
-
-        Category category = new Category("Motivational","desc");
-        categoryService.saveCategory(category);
-
-        Quote quote = new Quote("You can do this bro", author, category);
-        quoteService.saveQuote(quote);
-        //END of test case
-
         model.addAttribute("quotes", quoteService.getAllQuotes());
         return "/quote/quotes";
     }
 
     @GetMapping("/quotes/new")
     public String createQuoteForm(Model model) {
+        model.addAttribute("authors",authorService.getAllAuthors());
+        model.addAttribute("categories",categoryService.getAllCategories());
         Quote quote = new Quote();
         model.addAttribute("quote", quote);
-        return "/quotes/create_quote";
+        return "/quote/create_quote";
     }
 
     @PostMapping("/quotes")
-    public String saveQuote(@ModelAttribute("quote") Quote quote) {
-
+    public String saveQuote(@ModelAttribute("quote") Quote quote,
+                            @RequestParam(name = "authorId") Long authorId,
+                            @RequestParam(name = "categoryId")Long categoryId) {
+        quote.setAuthor(authorService.getAuthorById(authorId));
+        quote.setCategory(categoryService.getCategoryById(categoryId));
         quoteService.saveQuote(quote);
         return "redirect:/quotes";
     }
 
-    @GetMapping("/quotes/edit/{id}")
+    @GetMapping("/quote/edit/{id}")
     public String editStudentForm(@PathVariable Long id, Model model) {
 
         model.addAttribute("quote",quoteService.getQuoteById(id));

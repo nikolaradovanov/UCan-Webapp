@@ -25,7 +25,7 @@
             <tr th:each="quote: ${quotes}">
                 <td th:text ="${quote.text}"></td>
                 <td th:text ="${quote.author.firstName}"></td>
-                <td th:text ="${quote.category}"></td>
+                <td th:text ="${quote.category.name}"></td>
                 <td>
                     <a class="btn btn-primary" th:href="@{/quotes/edit/{id}(id=${quote.id})}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
