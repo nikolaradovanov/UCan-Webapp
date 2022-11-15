@@ -10,3 +10,6 @@ TODO:
 - List showed and liked quotes
 - Add ADMIN Role and following restrictions
 - Create nice pages for registration, login, quote of the day and list quotes
+
+Ideas
+- Cookie Jar
