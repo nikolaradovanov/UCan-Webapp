@@ -9,6 +9,7 @@
           crossorigin="anonymous">
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
@@ -26,7 +27,7 @@
                                placeholder="Enter Last Name"/>
                     </div>
                     <div class="form-group">
-                        <label> Biography</label>
+                        <label>Biography</label>
                         <input type="text" name="lastName" th:field="*{biography}" class="form-control"
                                placeholder="Enter Biography"/>
                     </div>

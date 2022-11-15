@@ -12,8 +12,11 @@ public class UserRegistrationDto {
    private String email;
    private String passwordHash;
 
+    public UserRegistrationDto() {
+    }
+
     public UserRegistrationDto(String firstName, String lastName, String gender, String dateOfBirth,
-            String username, String email, String passwordHash) {
+                               String username, String email, String passwordHash) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
