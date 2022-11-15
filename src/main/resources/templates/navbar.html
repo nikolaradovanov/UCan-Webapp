@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf-extras-springsecurity3">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 <div th:fragment="navbar">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand text-white" href="#">
-    <img src="Images/yes-you-can.png" width="50" height="50" class="d-inline-block align-top" alt="">
+    <img src="img/yes-you-can.png" width="50" height="50" class="d-inline-block align-top" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,15 +16,12 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" th:href="@{/registration}">Register</a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           CRUD
         </a>
@@ -33,6 +30,9 @@
           <a class="dropdown-item" th:href="@{/authors}">Author</a>
           <a class="dropdown-item" th:href="@{/categories}">Category</a>
         </div>
+      </li>
+      <li class="nav-item active" sec:authorize="isAuthenticated()">
+        <a class="nav-link" th:href="@{/logout}">Logout</a>
       </li>
     </ul>
   </div>

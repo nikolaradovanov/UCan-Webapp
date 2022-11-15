@@ -16,11 +16,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <!--Success message-->
-            <div th:if="${param.success}">
-                <div class="alert alert-info">You've successfully registered to UCan APP!</div>
-            </div>
-
             <h1>Registration</h1>
 
             <form th:action="@{/registration}" th:object="${user}" method="POST">

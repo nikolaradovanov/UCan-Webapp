@@ -23,13 +23,13 @@ public class UserRegistrationController {
 
     @GetMapping("/registration")
     public String showRegistrationForm() {
-        return "registration";
+        return "/auth/registration";
     }
 
     @PostMapping("/registration")
     public String registerUserAccount(@ModelAttribute("user")UserRegistrationDto userRegistrationDto) {
 
         userService.save(userRegistrationDto);
-        return "redirect:/registration?success";
+        return "redirect:/login?registered";
     }
 }
