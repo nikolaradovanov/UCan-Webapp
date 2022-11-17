@@ -1,11 +1,13 @@
 package com.ovdebeli.ucan.service.impl;
 
+import com.ovdebeli.ucan.models.Category;
 import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.repository.QuoteRepository;
 import com.ovdebeli.ucan.service.QuoteService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -44,15 +46,30 @@ public class QuoteServiceImpl implements QuoteService {
     }
 
     @Override
+    public List<Quote> getQuotesByCategory() {
+
+        return null;
+    }
+
+    @Override
     public Quote getQOTD(User user) {
 
         List<Quote> quotesList = quoteRepository.findAll();
 
         if (!quotesList.isEmpty()) {
-            int randomNum = ThreadLocalRandom.current().nextInt(0, quotesList.size());
-            return quotesList.get(randomNum);
-        } else {
-            return null;
+
+            int numberOfLikedQuotes = user.getLikedQuotes().size();
+
+            if (numberOfLikedQuotes < 10) {
+                int randomNum = ThreadLocalRandom.current().nextInt(0, quotesList.size());
+                return quotesList.get(randomNum);
+            }
+
+            Long idOfCategoryToChose;
+
+            //Return random quote from certain category;
         }
+
+        return null;
     }
 }

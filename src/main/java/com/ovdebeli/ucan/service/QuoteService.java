@@ -9,6 +9,8 @@ public interface QuoteService {
 
     List<Quote> getAllQuotes();
 
+    List<Quote> getQuotesByCategory();
+
     Quote saveQuote(Quote quote);
 
     Quote getQuoteById(Long id);
