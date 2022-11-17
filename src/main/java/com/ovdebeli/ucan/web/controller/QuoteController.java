@@ -1,11 +1,10 @@
 package com.ovdebeli.ucan.web.controller;
 
-import com.ovdebeli.ucan.models.Author;
-import com.ovdebeli.ucan.models.Category;
 import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.service.AuthorService;
 import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
+import com.ovdebeli.ucan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +15,13 @@ public class QuoteController {
     private QuoteService quoteService;
     private AuthorService authorService;
     private CategoryService categoryService;
+    private UserService userService;
 
-
-    public QuoteController(QuoteService quoteService, AuthorService authorService, CategoryService categoryService) {
+    public QuoteController(QuoteService quoteService, AuthorService authorService, CategoryService categoryService, UserService userService) {
         this.quoteService = quoteService;
         this.authorService = authorService;
         this.categoryService = categoryService;
+        this.userService = userService;
     }
 
     @GetMapping("/quotes")
@@ -78,5 +78,11 @@ public class QuoteController {
 
         quoteService.deleteQuoteById(id);
         return "redirect:/quotes";
+    }
+
+    @GetMapping("/quotes/qotd")
+    public String getQOTD(Model model) {
+        model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
+        return "/quote/qotd";
     }
 }
