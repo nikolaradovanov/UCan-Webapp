@@ -1,5 +1,6 @@
 package com.ovdebeli.ucan.service.impl;
 
+import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.models.Role;
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.repository.UserRepository;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -67,7 +69,8 @@ public class UserServiceImpl implements UserService {
                 userRegistrationDto.getUsername(),
                 Arrays.asList(new Role("ROLE_USER")),
                 userRegistrationDto.getEmail(),
-                passwordEncoder.encode(userRegistrationDto.getPasswordHash()));
+                passwordEncoder.encode(userRegistrationDto.getPasswordHash()),
+                new ArrayList<>());
 
         return saveUser(user);
     }

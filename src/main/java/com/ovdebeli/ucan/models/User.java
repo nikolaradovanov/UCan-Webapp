@@ -38,14 +38,22 @@ public class User {
     String passwordHash;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     Collection<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_preferences",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "quote_id", referencedColumnName = "id"))
+    Collection<Quote> likedQuotes;
 
     public User() {
     }
 
     public User(String firstName, String lastName, String gender, String dateOfBirth, String username,
-            Collection<Role> roles, String email, String passwordHash) {
+            Collection<Role> roles, String email, String passwordHash, Collection<Quote> likedQuotes) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -54,6 +62,7 @@ public class User {
         this.roles = roles;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.likedQuotes = likedQuotes;
     }
 
     public Long getId() {
@@ -123,4 +132,16 @@ public class User {
     public Collection<Role> getRoles() { return roles; }
 
     public void setRoles(Collection<Role> roles) { this.roles = roles; }
+
+    public Collection<Quote> getLikedQuotes() {
+        return likedQuotes;
+    }
+
+    public void setLikedQuotes(Collection<Quote> likedQuotes) {
+        this.likedQuotes = likedQuotes;
+    }
+
+    public void likeQuote(Quote quote) {
+        this.likedQuotes.add(quote);
+    }
 }

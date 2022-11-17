@@ -1,6 +1,7 @@
 package com.ovdebeli.ucan.web.controller;
 
 import com.ovdebeli.ucan.models.User;
+import com.ovdebeli.ucan.service.QuoteService;
 import com.ovdebeli.ucan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     private UserService userService;
+    private QuoteService quoteService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, QuoteService quoteService) {
         this.userService = userService;
+        this.quoteService = quoteService;
     }
 
     @GetMapping("/users")
@@ -68,5 +71,14 @@ public class UserController {
 
         userService.deleteUserById(id);
         return "redirect:/users";
+    }
+
+    @PostMapping("/users/likeQuote/{id}")
+    private String likeQuote(@PathVariable Long id) {
+
+        User existingUser = userService.getCurrentUser();
+        existingUser.likeQuote(quoteService.getQuoteById(id));
+        userService.saveUser(existingUser);
+        return "stayOnSamePage";
     }
 }
