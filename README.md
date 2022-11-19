@@ -13,3 +13,4 @@ TODO:
 
 Ideas
 - Cookie Jar
+- Custom motivational music
