@@ -1,16 +1,16 @@
 # UCan-Webapp
  UCan motivational web app.
 
-Resources
+## Resources
 https://freefrontend.com/bootstrap-tables/
 
-TODO:
+## TODO:
 - Quote of the day feature
 - Like feature
 - List showed and liked quotes
-- Add ADMIN Role and following restrictions
+- Add ADMIN and MODERATOR Roles and following restrictions
 - Create nice pages for registration, login, quote of the day and list quotes
 
-Ideas
+## Ideas
 - Cookie Jar
 - Custom motivational music
