@@ -1,6 +1,7 @@
 package com.ovdebeli.ucan.web.controller;
 
 import com.ovdebeli.ucan.models.Quote;
+import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.service.AuthorService;
 import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
@@ -8,6 +9,8 @@ import com.ovdebeli.ucan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class QuoteController {
@@ -36,6 +39,8 @@ public class QuoteController {
         model.addAttribute("categories",categoryService.getAllCategories());
         Quote quote = new Quote();
         model.addAttribute("quote", quote);
+
+        quoteService.testQOTD();
         return "/quote/create_quote";
     }
 
@@ -70,6 +75,23 @@ public class QuoteController {
         existingQuote.setText(quote.getText());
         quoteService.saveQuote(existingQuote);
 
+        User user = userService.getCurrentUser();
+        List<Quote> likedQuotes = user.getLikedQuotes();
+        likedQuotes.add(quoteService.getQuoteById(2L));
+        likedQuotes.add(quoteService.getQuoteById(5L));
+        likedQuotes.add(quoteService.getQuoteById(8L));
+        likedQuotes.add(quoteService.getQuoteById(11L));
+        userService.saveUser(user);
+        likedQuotes.add(quoteService.getQuoteById(5L));
+        likedQuotes.add(quoteService.getQuoteById(8L));
+        likedQuotes.add(quoteService.getQuoteById(11L));
+        userService.saveUser(user);
+        likedQuotes.add(quoteService.getQuoteById(8L));
+        likedQuotes.add(quoteService.getQuoteById(11L));
+        userService.saveUser(user);
+        likedQuotes.add(quoteService.getQuoteById(11L));
+        userService.saveUser(user);
+
         return "redirect:/quotes";
     }
 
@@ -83,6 +105,7 @@ public class QuoteController {
     @GetMapping("/quotes/qotd")
     public String getQOTD(Model model) {
         model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
+
         return "/quote/qotd";
     }
 }

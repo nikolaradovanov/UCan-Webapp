@@ -20,4 +20,6 @@ public interface QuoteService {
     void deleteQuoteById(Long id);
 
     Quote getQOTD(User user);
+
+    void testQOTD();
 }

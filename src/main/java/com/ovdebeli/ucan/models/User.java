@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user_table", uniqueConstraints = { @UniqueConstraint(columnNames = "email"),
@@ -47,13 +48,13 @@ public class User {
     @JoinTable(name = "user_preferences",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "quote_id", referencedColumnName = "id"))
-    Collection<Quote> likedQuotes;
+    List<Quote> likedQuotes;
 
     public User() {
     }
 
     public User(String firstName, String lastName, String gender, String dateOfBirth, String username,
-            Collection<Role> roles, String email, String passwordHash, Collection<Quote> likedQuotes) {
+            Collection<Role> roles, String email, String passwordHash, List<Quote> likedQuotes) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -133,11 +134,11 @@ public class User {
 
     public void setRoles(Collection<Role> roles) { this.roles = roles; }
 
-    public Collection<Quote> getLikedQuotes() {
+    public List<Quote> getLikedQuotes() {
         return likedQuotes;
     }
 
-    public void setLikedQuotes(Collection<Quote> likedQuotes) {
+    public void setLikedQuotes(List<Quote> likedQuotes) {
         this.likedQuotes = likedQuotes;
     }
 

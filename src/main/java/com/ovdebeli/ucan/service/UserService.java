@@ -1,5 +1,6 @@
 package com.ovdebeli.ucan.service;
 
+import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.web.dto.UserRegistrationDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,4 +16,5 @@ public interface UserService extends UserDetailsService{
     User updateUser(User user);
     void deleteUserById(Long id);
     User getCurrentUser();
+    List<Quote> getLikedQuotes();
 }

@@ -4,6 +4,7 @@ import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.models.Role;
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.repository.UserRepository;
+import com.ovdebeli.ucan.service.QuoteService;
 import com.ovdebeli.ucan.service.UserService;
 import com.ovdebeli.ucan.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,14 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private QuoteService quoteService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository,@Lazy QuoteService quoteService) {
         this.userRepository = userRepository;
+        this.quoteService = quoteService;
     }
 
     @Override
@@ -105,4 +108,19 @@ public class UserServiceImpl implements UserService {
             return principal.toString();
         }
     }
+
+    @Override
+    public List<Quote> getLikedQuotes() {
+
+        List<Quote> likedQuotes = new ArrayList<>();
+
+        List<Long> likedQuotesId = userRepository.findLikedQuotesId(getCurrentUser());
+
+        for (Long i:likedQuotesId) {
+            likedQuotes.add(quoteService.getQuoteById(i));
+        }
+
+        return likedQuotes;
+    }
+
 }
