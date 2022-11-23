@@ -108,7 +108,7 @@ public class QuoteServiceImpl implements QuoteService {
 
             Arrays.sort(oddsArray);
 
-            //Find most appropriate quote
+            //Find most appropriate category
             Long idOfCategoryToChose = 0L;
             int sum = 0;
             for (int i = 0; i < categories.size(); i++) {
@@ -117,6 +117,7 @@ public class QuoteServiceImpl implements QuoteService {
 
                 if (randomNum <= sum) {
                     idOfCategoryToChose = categories.get(i).getId();
+                    break;
                 }
             }
 
@@ -156,12 +157,12 @@ public class QuoteServiceImpl implements QuoteService {
                 default:
                     break;
             }
-
-            System.out.println("Results:");
-            System.out.println("Money " + money);
-            System.out.println("Motiv " + motiv);
-            System.out.println("Truth " + truth);
-            System.out.println("Succe" + success);
         }
+
+        System.out.println("Results:");
+        System.out.println(categoryService.getCategoryById(1L).getName()+ " " + motiv);
+        System.out.println(categoryService.getCategoryById(2L).getName()+ " " + money);
+        System.out.println(categoryService.getCategoryById(3L).getName()+ " " + success);
+        System.out.println(categoryService.getCategoryById(4L).getName()+ " " + truth);
     }
 }

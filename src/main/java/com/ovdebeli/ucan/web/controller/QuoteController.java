@@ -92,6 +92,12 @@ public class QuoteController {
         likedQuotes.add(quoteService.getQuoteById(11L));
         userService.saveUser(user);
 
+        System.out.println(quoteService.getQuoteById(2L).getCategory().getName());
+        System.out.println(quoteService.getQuoteById(5L).getCategory().getName());
+        System.out.println(quoteService.getQuoteById(8L).getCategory().getName());
+        System.out.println(quoteService.getQuoteById(11L).getCategory().getName());
+
+
         return "redirect:/quotes";
     }
 
