@@ -21,5 +21,5 @@ public interface QuoteService {
 
     Quote getQOTD(User user);
 
-    void testQOTD();
+   // void testQOTD();
 }

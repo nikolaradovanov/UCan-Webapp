@@ -40,7 +40,6 @@ public class QuoteController {
         Quote quote = new Quote();
         model.addAttribute("quote", quote);
 
-        quoteService.testQOTD();
         return "/quote/create_quote";
     }
 
@@ -68,36 +67,6 @@ public class QuoteController {
                               @RequestParam(name = "authorId") Long authorId,
                               @RequestParam(name = "categoryId")Long categoryId) {
 
-        Quote existingQuote = quoteService.getQuoteById(id);
-        existingQuote.setId(id);
-        existingQuote.setAuthor(authorService.getAuthorById(authorId));
-        existingQuote.setCategory(categoryService.getCategoryById(categoryId));
-        existingQuote.setText(quote.getText());
-        quoteService.saveQuote(existingQuote);
-
-        User user = userService.getCurrentUser();
-        List<Quote> likedQuotes = user.getLikedQuotes();
-        likedQuotes.add(quoteService.getQuoteById(2L));
-        likedQuotes.add(quoteService.getQuoteById(5L));
-        likedQuotes.add(quoteService.getQuoteById(8L));
-        likedQuotes.add(quoteService.getQuoteById(11L));
-        userService.saveUser(user);
-        likedQuotes.add(quoteService.getQuoteById(5L));
-        likedQuotes.add(quoteService.getQuoteById(8L));
-        likedQuotes.add(quoteService.getQuoteById(11L));
-        userService.saveUser(user);
-        likedQuotes.add(quoteService.getQuoteById(8L));
-        likedQuotes.add(quoteService.getQuoteById(11L));
-        userService.saveUser(user);
-        likedQuotes.add(quoteService.getQuoteById(11L));
-        userService.saveUser(user);
-
-        System.out.println(quoteService.getQuoteById(2L).getCategory().getName());
-        System.out.println(quoteService.getQuoteById(5L).getCategory().getName());
-        System.out.println(quoteService.getQuoteById(8L).getCategory().getName());
-        System.out.println(quoteService.getQuoteById(11L).getCategory().getName());
-
-
         return "redirect:/quotes";
     }
 
@@ -113,5 +82,12 @@ public class QuoteController {
         model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
 
         return "/quote/qotd";
+    }
+
+    @GetMapping("/quotes/card")
+    public String getQuoteCard(Model model) {
+       // model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
+
+        return "/quote/card_quote";
     }
 }

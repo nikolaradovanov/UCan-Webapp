@@ -133,36 +133,36 @@ public class QuoteServiceImpl implements QuoteService {
         return null;
     }
 
-    public void testQOTD() {
-
-        int truth = 0, success = 0, motiv = 0, money = 0;
-
-        for (int i =0; i < 100; i++) {
-            Quote quote = getQOTD(userService.getCurrentUser());
-            String name = quote.getCategory().getName();
-
-            switch (name) {
-                case "Money" :
-                    money++;
-                    break;
-                case "Success":
-                    success++;
-                    break;
-                case "Motivational":
-                    motiv++;
-                    break;
-                case "Truth":
-                    truth++;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        System.out.println("Results:");
-        System.out.println(categoryService.getCategoryById(1L).getName()+ " " + motiv);
-        System.out.println(categoryService.getCategoryById(2L).getName()+ " " + money);
-        System.out.println(categoryService.getCategoryById(3L).getName()+ " " + success);
-        System.out.println(categoryService.getCategoryById(4L).getName()+ " " + truth);
-    }
+//    public void testQOTD() {
+//
+//        int truth = 0, success = 0, motiv = 0, money = 0;
+//
+//        for (int i =0; i < 100; i++) {
+//            Quote quote = getQOTD(userService.getCurrentUser());
+//            String name = quote.getCategory().getName();
+//
+//            switch (name) {
+//                case "Money" :
+//                    money++;
+//                    break;
+//                case "Success":
+//                    success++;
+//                    break;
+//                case "Motivational":
+//                    motiv++;
+//                    break;
+//                case "Truth":
+//                    truth++;
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//
+//        System.out.println("Results:");
+//        System.out.println(categoryService.getCategoryById(1L).getName()+ " " + motiv);
+//        System.out.println(categoryService.getCategoryById(2L).getName()+ " " + money);
+//        System.out.println(categoryService.getCategoryById(3L).getName()+ " " + success);
+//        System.out.println(categoryService.getCategoryById(4L).getName()+ " " + truth);
+//    }
 }
