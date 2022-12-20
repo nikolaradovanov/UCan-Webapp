@@ -86,7 +86,7 @@ public class QuoteController {
 
     @GetMapping("/quotes/card")
     public String getQuoteCard(Model model) {
-       // model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
+        model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
 
         return "/quote/card_quote";
     }
