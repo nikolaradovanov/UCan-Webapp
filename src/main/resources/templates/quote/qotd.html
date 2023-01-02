@@ -33,7 +33,9 @@
 </div>
 
 <div class="container">
-    <section class="mx-auto my-5" style="max-width: 23rem;">
+    <div class="row">
+        <div class="col-9 d-flex align-items-end">
+    <section class="mx-auto my-5" style="max-width: 23rem; p-2">
 
         <div class="card">
             <div class="card-body">
@@ -57,16 +59,18 @@
         </div>
 
     </section>
+    </div>
+        <div class="col-3">
+            <i onclick="myFunction(this)" class="fa fa-regular fa-heart"></i>
 
-    <div>
-        <i onclick="myFunction(this)" class="fa fa-regular fa-heart"></i>
-
-        <script>
+            <script>
                     function myFunction(x) {
                         x.classList.toggle("fa-solid fa-heart");
                     }
                 </script>
+        </div>
     </div>
+
 </div>
 
 </body>
