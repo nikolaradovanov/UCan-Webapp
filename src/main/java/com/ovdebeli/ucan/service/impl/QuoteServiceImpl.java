@@ -51,7 +51,7 @@ public class QuoteServiceImpl implements QuoteService {
     public void deleteQuoteById(Long id) {
         quoteRepository.deleteById(id);
     }
-
+    
     @Override
     public List<Quote> getQuotesByCategory() {
 

@@ -1,17 +1,16 @@
 package com.ovdebeli.ucan.web.controller;
 
+import com.ovdebeli.ucan.models.Author;
+import com.ovdebeli.ucan.models.Category;
 import com.ovdebeli.ucan.models.Quote;
-import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.service.AuthorService;
 import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
-import com.ovdebeli.ucan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 public class QuoteController {
 
@@ -39,7 +38,6 @@ public class QuoteController {
         model.addAttribute("categories",categoryService.getAllCategories());
         Quote quote = new Quote();
         model.addAttribute("quote", quote);
-
         return "/quote/create_quote";
     }
 
@@ -66,6 +64,7 @@ public class QuoteController {
     public String updateQuote(@PathVariable Long id, @ModelAttribute("quote") Quote quote,
                               @RequestParam(name = "authorId") Long authorId,
                               @RequestParam(name = "categoryId")Long categoryId) {
+
 
         return "redirect:/quotes";
     }
