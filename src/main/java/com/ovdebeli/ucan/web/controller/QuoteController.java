@@ -3,6 +3,7 @@ package com.ovdebeli.ucan.web.controller;
 import com.ovdebeli.ucan.models.Author;
 import com.ovdebeli.ucan.models.Category;
 import com.ovdebeli.ucan.models.Quote;
+import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.service.AuthorService;
 import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
@@ -88,6 +89,18 @@ public class QuoteController {
         model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
 
         return "/quote/qotd";
+    }
+
+    //TODO
+    //Add POST Method to qotd page
+    //Make qotd function be called once a day
+    @PostMapping("/quotes/qotd")
+    private String likeQuote(@RequestParam(name = "quoteId") Long quoteId) {
+
+        User existingUser = userService.getCurrentUser();
+        existingUser.likeQuote(quoteService.getQOTD(existingUser));
+        userService.saveUser(existingUser);
+        return "redirect:/quotes/qotd";
     }
 
     @GetMapping("/quotes/card")
