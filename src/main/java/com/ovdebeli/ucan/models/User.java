@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user_table", uniqueConstraints = { @UniqueConstraint(columnNames = "email"),

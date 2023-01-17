@@ -8,70 +8,47 @@
     <link rel="stylesheet" href="/css/stylesheet.css">
     <script src="https://kit.fontawesome.com/e6d5f02f54.js" crossorigin="anonymous"></script>
 
-    <style>
-        .fa {
-          font-size: 50px;
-          cursor: pointer;
-          user-select: none;
-        }
-
-        .fa:hover {
-          color: red;
-        }
-    </style>
 </head>
 <body>
 <div th:insert="navbar :: navbar"></div>
 
-<div class="container">
-    <div class="row">
-        <p>
-            <span th:text="${quote.text}"></span>
-            <span th:text="${quote.category.name}"></span>
-        </p>
-    </div>
-</div>
+<script>
+function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
+</script>
 
-<div class="container">
-    <div class="row">
-        <div class="col-9 d-flex align-items-end">
-    <section class="mx-auto my-5" style="max-width: 23rem; p-2">
+<section class="vh-100 bg-light">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-5">
 
-        <div class="card">
-            <div class="card-body">
-                <blockquote class="blockquote blockquote-custom bg-white px-3 pt-4">
-                    <div class="blockquote-custom-icon bg-info shadow-1-strong">
-                        <i class="fa fa-quote-left text-white"></i>
+                <div class="card text-white" style="background-color: #1f959b; border-radius: 15px;">
+                    <div class="card-body p-5">
+
+                        <i class="fas fa-quote-left fa-2x mb-4"></i>
+
+                        <p class="lead" th:text="${quote.text}">Genius is one percent inspiration and ninety-nine percent perspiration.</p>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">
+                                <span th:text="${quote.author.firstName}">Thomas</span>
+                                <span th:text="${quote.author.lastName}">Thomas</span>
+                            </p>
+                            <h6 class="mb-0"><span class="badge rounded-pill"
+                                                   style="background-color: rgba(0,0,0, 0.2);">876</span> <i onclick="myFunction(this)" class="fas fa-heart ms-2"></i>
+                            </h6>
+                        </div>
+
                     </div>
-                    <p class="mb-0 mt-2 font-italic" th:text="${quote.text}">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo."
-                    </p>
-                    <footer class="blockquote-footer pt-4 mt-4 border-top">
-                        Someone famous in
-                        <cite title="Source Title" th:text="${quote.author.firstName}">Source Title</cite>
-                        <cite title="Source Title" th:text="${quote.author.lastName}">Source Title</cite>
-                    </footer>
-                </blockquote>
+                </div>
 
             </div>
         </div>
-
-    </section>
     </div>
-        <div class="col-3">
-            <i onclick="myFunction(this)" class="fa fa-regular fa-heart"></i>
-
-            <script>
-                    function myFunction(x) {
-                        x.classList.toggle("fa-solid fa-heart");
-                    }
-                </script>
-        </div>
-    </div>
-
-</div>
+</section>
 
 </body>
 </html>

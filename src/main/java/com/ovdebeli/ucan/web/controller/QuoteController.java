@@ -6,6 +6,7 @@ import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.service.AuthorService;
 import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
+import com.ovdebeli.ucan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +66,12 @@ public class QuoteController {
                               @RequestParam(name = "authorId") Long authorId,
                               @RequestParam(name = "categoryId")Long categoryId) {
 
+        Quote existingQuote = quoteService.getQuoteById(id);
+        existingQuote.setId(id);
+        existingQuote.setText(quote.getText());
+        existingQuote.setAuthor(authorService.getAuthorById(authorId));
+        existingQuote.setCategory(categoryService.getCategoryById(categoryId));
+        quoteService.saveQuote(existingQuote);
 
         return "redirect:/quotes";
     }
