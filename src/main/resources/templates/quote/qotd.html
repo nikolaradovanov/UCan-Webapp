@@ -14,7 +14,8 @@
 
 <script>
 function myFunction(x) {
-  x.classList.toggle("fa-thumbs-down");
+  x.classList.toggle("fa-heart-o");
+  x.classList.toggle("fa-heart");
 }
 </script>
 
@@ -38,7 +39,7 @@ function myFunction(x) {
                                 <span th:text="${quote.author.lastName}">Thomas</span>
                             </p>
                             <h6 class="mb-0"><span class="badge rounded-pill"
-                                                   style="background-color: rgba(0,0,0, 0.2);">876</span> <i onclick="myFunction(this)" class="fas fa-heart ms-2"></i>
+                                                   style="background-color: rgba(0,0,0, 0.2);">876</span> <i onclick="myFunction(this)" class="fa fa-heart-o ms-2"></i>
                             </h6>
                         </div>
 
