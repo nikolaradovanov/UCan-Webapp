@@ -1,0 +1,4 @@
+User
+add lastShownQuote(Quote)
+add lastShown(Date)
+add shownQuotesList(Quote List)
