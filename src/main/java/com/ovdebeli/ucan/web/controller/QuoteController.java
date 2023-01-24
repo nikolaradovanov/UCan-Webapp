@@ -94,8 +94,8 @@ public class QuoteController {
     //TODO
     //Add POST Method to qotd page
     //Make qotd function be called once a day
-    @PostMapping("/quotes/qotd")
-    private String likeQuote(@RequestParam(name = "quoteId") Long quoteId) {
+    @PostMapping("/quotes/like")
+    private String likeQuote() {
 
         User existingUser = userService.getCurrentUser();
         existingUser.likeQuote(quoteService.getQOTD(existingUser));
