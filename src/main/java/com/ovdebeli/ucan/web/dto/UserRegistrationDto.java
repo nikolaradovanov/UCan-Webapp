@@ -1,13 +1,14 @@
 package com.ovdebeli.ucan.web.dto;
 
 import javax.persistence.Column;
+import java.util.Date;
 
 public class UserRegistrationDto {
 
    private String firstName;
    private String lastName;
    private String gender;
-   private String dateOfBirth;
+   private Date dateOfBirth;
    private String username;
    private String email;
    private String passwordHash;
@@ -15,7 +16,7 @@ public class UserRegistrationDto {
     public UserRegistrationDto() {
     }
 
-    public UserRegistrationDto(String firstName, String lastName, String gender, String dateOfBirth,
+    public UserRegistrationDto(String firstName, String lastName, String gender, Date dateOfBirth,
                                String username, String email, String passwordHash) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -50,11 +51,11 @@ public class UserRegistrationDto {
         this.gender = gender;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
