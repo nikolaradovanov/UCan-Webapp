@@ -1,7 +1,5 @@
 package com.ovdebeli.ucan.web.controller;
 
-import com.ovdebeli.ucan.models.Author;
-import com.ovdebeli.ucan.models.Category;
 import com.ovdebeli.ucan.models.Quote;
 import com.ovdebeli.ucan.models.User;
 import com.ovdebeli.ucan.service.AuthorService;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 @Controller
 public class QuoteController {
 
@@ -98,14 +95,14 @@ public class QuoteController {
     private String likeQuote() {
 
         User existingUser = userService.getCurrentUser();
-        existingUser.likeQuote(quoteService.getQOTD(existingUser));
+        existingUser.likeQuote(quoteService.getMostAppropriateQuote(existingUser));
         userService.saveUser(existingUser);
         return "redirect:/quotes/qotd";
     }
 
     @GetMapping("/quotes/card")
     public String getQuoteCard(Model model) {
-        model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
+        model.addAttribute("quote", quoteService.getMostAppropriateQuote(userService.getCurrentUser()));
 
         return "/quote/card_quote";
     }

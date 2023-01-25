@@ -7,10 +7,12 @@ import com.ovdebeli.ucan.repository.QuoteRepository;
 import com.ovdebeli.ucan.service.CategoryService;
 import com.ovdebeli.ucan.service.QuoteService;
 import com.ovdebeli.ucan.service.UserService;
+import org.joda.time.DateTimeComparator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -80,7 +82,7 @@ public class QuoteServiceImpl implements QuoteService {
     }
 
     @Override
-    public Quote getQOTD(User user) {
+    public Quote getMostAppropriateQuote(User user) {
 
         List<Quote> likedQuotesList = userService.getLikedQuotes();
 
@@ -131,6 +133,31 @@ public class QuoteServiceImpl implements QuoteService {
         }
 
         return null;
+    }
+
+    @Override
+    public Quote getQOTD(User user) {
+
+        Quote quoteToReturn = userService.getCurrentUser().getLastShownQuote();
+        Date lastShownDate = userService.getCurrentUser().getLastShownDate();
+        Date currentDate = new Date();
+        User currentUser = userService.getCurrentUser();
+        DateTimeComparator dateTimeComparator = DateTimeComparator.getDateOnlyInstance();
+
+        if (quoteToReturn==null ||
+                lastShownDate == null ||
+                dateTimeComparator.compare(currentDate, lastShownDate) != 0) {
+
+            quoteToReturn = getMostAppropriateQuote(currentUser);
+            currentUser.setLastShownDate(currentDate);
+            currentUser.setLastShownQuote(quoteToReturn);
+            userService.saveUser(currentUser);
+
+        } else {
+            quoteToReturn = currentUser.getLastShownQuote();
+        }
+
+        return quoteToReturn;
     }
 
 //    public void testQOTD() {

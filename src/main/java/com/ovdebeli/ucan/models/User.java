@@ -165,4 +165,15 @@ public class User {
     public void likeQuote(Quote quote) {
         this.likedQuotes.add(quote);
     }
+
+
+    public Date getLastShownDate() {
+        return lastShownDate;
+    }
+
+    public void setLastShownDate(Date lastShownDate) {
+        this.lastShownDate = lastShownDate;
+    }
+
+
 }

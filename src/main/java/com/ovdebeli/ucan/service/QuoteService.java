@@ -21,7 +21,10 @@ public interface QuoteService {
 
     void deleteQuoteById(Long id);
 
+    Quote getMostAppropriateQuote(User user);
+
     Quote getQOTD(User user);
+
 
    // void testQOTD();
 }
