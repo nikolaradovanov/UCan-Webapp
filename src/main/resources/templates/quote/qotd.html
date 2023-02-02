@@ -11,7 +11,6 @@
 </head>
 <body>
 <div th:insert="navbar :: navbar"></div>
-
 <script>
 function myFunction(x) {
   x.classList.toggle("fa-heart-o");
@@ -42,7 +41,8 @@ function myFunction(x) {
                                 <form name="likeForm" th:action="@{/quotes/like}" method="post">
                                     <h6 class="mb-0"><span class="badge rounded-pill"
                                                            style="background-color: rgba(0,0,0, 0.2);">876</span>
-                                    <i onclick="likeForm.submit(); myFunction(this);" class="fa fa-heart-o ms-2"></i>
+                                        <i th:if="${isLiked == true}" onclick="likeForm.submit(); myFunction(this);" class="fa fa-heart ms-2"></i>
+                                    <i th:if="${isLiked == false}" onclick="likeForm.submit(); myFunction(this);" class="fa fa-heart-o ms-2"></i>
                                 </form>
                             </h6>
                         </div>

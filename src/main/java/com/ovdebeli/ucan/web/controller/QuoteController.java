@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class QuoteController {
 
@@ -83,7 +85,13 @@ public class QuoteController {
 
     @GetMapping("/quotes/qotd")
     public String getQOTD(Model model) {
-        model.addAttribute("quote", quoteService.getQOTD(userService.getCurrentUser()));
+        Quote qotd = quoteService.getQOTD(userService.getCurrentUser());
+        model.addAttribute("quote", qotd);
+        if (userService.getCurrentUser().getLikedQuotes().contains(qotd)) {
+            model.addAttribute("isLiked", true);
+        } else {
+            model.addAttribute("isLiked", false);
+        }
 
         return "/quote/qotd";
     }
@@ -95,7 +103,15 @@ public class QuoteController {
     private String likeQuote() {
 
         User existingUser = userService.getCurrentUser();
-        existingUser.likeQuote(quoteService.getMostAppropriateQuote(existingUser));
+        Quote quoteToLike = quoteService.getQOTD(existingUser);
+        if (existingUser.getLikedQuotes().contains(quoteToLike)) {
+            List<Quote> likedQuotes = existingUser.getLikedQuotes();
+            likedQuotes.remove(quoteToLike);
+            existingUser.setLikedQuotes(likedQuotes);
+        } else {
+            existingUser.likeQuote(quoteToLike);
+        }
+
         userService.saveUser(existingUser);
         return "redirect:/quotes/qotd";
     }
