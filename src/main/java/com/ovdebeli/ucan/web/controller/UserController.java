@@ -1,21 +1,21 @@
 package com.ovdebeli.ucan.web.controller;
 
 import com.ovdebeli.ucan.models.User;
+import com.ovdebeli.ucan.service.QuoteService;
 import com.ovdebeli.ucan.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
 
     private UserService userService;
+    private QuoteService quoteService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, QuoteService quoteService) {
         this.userService = userService;
+        this.quoteService = quoteService;
     }
 
     @GetMapping("/users")

@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label>Last Name </label>
-                        <input ype="text" name="lastName" th:field="*{lastName}" class="form-control"
+                        <input type="text" name="lastName" th:field="*{lastName}" class="form-control"
                                placeholder="Enter Last Name"/>
                     </div>
                     <div class="form-group">
@@ -42,13 +42,17 @@
                         <input type="text" name="email" th:field="*{email}" class="form-control"
                                placeholder="Enter email"/>
                     </div>
-                    <div class="form-group">
-                        <label> Date of birth</label>
-                        <input type="text" name="dateOfBirth" th:field="*{dateOfBirth}" class="form-control"
-                               placeholder="Enter Date of birth"/>
+
+
+                    <div class="input-group date">
+                        <label for="birthdate">Date of birthhhhh</label>
+                        <input type="text" class="form-control" id="birthdate" autocomplete="off" th:field="*{dateOfBirth}"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Password hash</label>
+                        <label>Password hashhhhh</label>
                         <input type="text" name="lastName" th:field="*{passwordHash}" class="form-control"
                                placeholder="Enter password hash"/>
                     </div>

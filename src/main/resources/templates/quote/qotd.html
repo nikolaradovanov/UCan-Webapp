@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/stylesheet.css">
+    <script src="https://kit.fontawesome.com/e6d5f02f54.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div th:insert="navbar :: navbar"></div>
+<script>
+function myFunction(x) {
+  x.classList.toggle("fa-heart-o");
+  x.classList.toggle("fa-heart");
+}
+</script>
+
+<section class="vh-100 bg-light">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-5">
+
+                <div class="card text-white" style="background-color: #1f959b; border-radius: 15px;">
+                    <div class="card-body p-5">
+
+                        <i class="fas fa-quote-left fa-2x mb-4"></i>
+
+                        <p class="lead" th:text="${quote.text}">Genius is one percent inspiration and ninety-nine percent perspiration.</p>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-0">
+                                <span th:text="${quote.author.firstName}">Thomas</span>
+                                <span th:text="${quote.author.lastName}">Thomas</span>
+                            </p>
+
+                                <form name="likeForm" th:action="@{/quotes/like}" method="post">
+                                    <h6 class="mb-0"><span class="badge rounded-pill"
+                                                           style="background-color: rgba(0,0,0, 0.2);">876</span>
+                                        <i th:if="${isLiked == true}" onclick="likeForm.submit(); myFunction(this);" class="fa fa-heart ms-2"></i>
+                                    <i th:if="${isLiked == false}" onclick="likeForm.submit(); myFunction(this);" class="fa fa-heart-o ms-2"></i>
+                                </form>
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
