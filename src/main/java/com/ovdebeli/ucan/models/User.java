@@ -75,7 +75,7 @@ public class User {
         this.roles = roles;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.likedQuotes = likedQuotes;
+        this.likedQuotes = likedQuotes; 
     }
 
     public Long getId() {
