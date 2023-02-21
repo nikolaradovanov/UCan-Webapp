@@ -9,19 +9,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/stylesheet.css">
-    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
-          rel = "stylesheet">
-    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>
-    <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>
     <script src="https://kit.fontawesome.com/e6d5f02f54.js" crossorigin="anonymous"></script>
+
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <!-- Javascript -->
+    <script>
+         $(function() {
+            $( "#datepick" ).datepicker({dateFormat:'dd/mm/yy'});
+         });
+    </script>
 
     <title>Hello, world!</title>
 </head>
 <body>
-
 <script>
 function verifyPassword() {
   var pw = document.getElementById("pswd").value;
@@ -66,6 +69,7 @@ function verifyPassword() {
                     <input ype="text" name="lastName" th:field="*{lastName}" class="form-control"
                            placeholder="Enter Last Name" required autofocus="autofocus"/>
                 </div>
+
                 <div class="form-group">
                     <label> Gender</label>
                     <input type="text" name="lastName" th:field="*{gender}" class="form-control"
@@ -81,11 +85,11 @@ function verifyPassword() {
                     <input type="text" name="email" th:field="*{email}" class="form-control"
                            placeholder="Enter Email" required autofocus="autofocus"/>
                 </div>
-                <div class="form-group row">
+                <div class="form-group">
                     <div class="col-md-4 mt-5">
-                        <label for="birthdate">Date of birth</label>
+                        <label for="datepick">Date of birth</label>
                         <div class="input-group date">
-                            <input type="text" class="form-control" id="birthdate" autocomplete="off" th:field="*{dateOfBirth}"/>
+                            <input type="text" class="form-control" id="datepick" autocomplete="off" th:field="*{dateOfBirth}"/>
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                             </div>
@@ -102,16 +106,15 @@ function verifyPassword() {
                     <button type="submit" class="btn btn-success">Register</button>
                     <span>Already registered?<a href="/"> sign in here</a></span>
                 </div>
+
+                <br><br>
+
+
             </form>
 
         </div>
     </div>
 </div>
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
 
 </body>
 </html>
