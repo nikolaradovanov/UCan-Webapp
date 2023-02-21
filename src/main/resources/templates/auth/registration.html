@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/stylesheet.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>
     <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>
     <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>
@@ -18,6 +22,31 @@
 </head>
 <body>
 
+<script>
+function verifyPassword() {
+  var pw = document.getElementById("pswd").value;
+  //check empty password field
+  if(pw == "") {
+     document.getElementById("message").innerHTML = "**Fill the password please!";
+     return false;
+  }
+
+ //minimum password length validation
+  if(pw.length < 8) {
+     document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+     return false;
+  }
+
+//maximum length of password validation
+  if(pw.length > 15) {
+     document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+     return false;
+  } else {
+     alert("Password is correct");
+  }
+}
+</script>
+
 <div th:insert="navbar :: navbar">  </div>
 
 <div class="container">
@@ -25,7 +54,7 @@
         <div class="col-md-6 col-md-offset-3">
             <h1>Registration</h1>
 
-            <form th:action="@{/registration}" th:object="${user}" method="POST">
+            <form th:action="@{/registration}" th:object="${user}" method="POST" onsubmit ="return verifyPassword()">
                 <div class="form-group">
                     <label class="control-label" form="firstName">First Name </label>
                     <input type="text" name="firstName" th:field="*{firstName}" class="form-control"
@@ -64,9 +93,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Password hash</label>
-                    <input type="text" name="lastName" th:field="*{passwordHash}" class="form-control"
-                           placeholder="Enter password hash" required autofocus="autofocus"/>
+                    <span id = "message" style="color:red"> </span><br>
+                    <label>Password</label>
+                    <input type="password" id="pswd" name="lastName" th:field="*{passwordHash}" class="form-control"
+                           placeholder="Enter password" required autofocus="autofocus"/>
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-success">Register</button>
@@ -82,13 +112,6 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
-
-<script>
-    $('.input-group.date').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-</script>
 
 </body>
 </html>
